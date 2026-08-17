@@ -1,5 +1,7 @@
+import InfiniteGallery from "../components/InfiniteGallery";
+
 const MainPage = () => {
-  return <div></div>;
+  return <InfiniteGallery />;
 };
 
 export default MainPage;
