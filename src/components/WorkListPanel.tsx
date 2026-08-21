@@ -21,10 +21,15 @@ const WorkListPanel = ({ onSelect }: WorkListPanelProps) => {
     );
   }, [query]);
 
+  const closeDrawer = () => {
+    setIsOpen(false);
+    setQuery('');
+  };
+
   useEffect(() => {
     if (!isOpen) return;
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setIsOpen(false);
+      if (event.key === 'Escape') closeDrawer();
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
@@ -32,19 +37,19 @@ const WorkListPanel = ({ onSelect }: WorkListPanelProps) => {
 
   const handleSelect = (work: Work) => {
     onSelect(work);
-    setIsOpen(false);
+    closeDrawer();
   };
 
   return (
     <>
       <ToggleButton
         type="button"
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={() => (isOpen ? closeDrawer() : setIsOpen(true))}
         aria-label={isOpen ? '목록 닫기' : '작품 목록'}>
         <img src={isOpen ? closeIcon : listIcon} alt="" />
       </ToggleButton>
 
-      <Overlay $open={isOpen} onClick={() => setIsOpen(false)} />
+      <Overlay $open={isOpen} onClick={closeDrawer} />
 
       <Drawer $open={isOpen}>
         <List>
@@ -59,7 +64,11 @@ const WorkListPanel = ({ onSelect }: WorkListPanelProps) => {
             </ListItem>
           ))}
         </List>
-        <SearchInput value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Seacrh" />
+        <SearchInput
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="이름 또는 작품명 검색"
+        />
       </Drawer>
     </>
   );
@@ -185,7 +194,7 @@ const SearchInput = styled.input`
   ${({ theme }) => theme.fonts.Text01};
 
   &::placeholder {
-    color: ${({ theme }) => theme.colors.lightgrey};
+    color: ${({ theme }) => theme.colors.grey};
   }
 `;
 
