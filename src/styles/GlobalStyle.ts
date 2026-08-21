@@ -26,7 +26,6 @@ export const reset = css`
   code,
   del,
   dfn,
-  em,
   img,
   ins,
   kbd,

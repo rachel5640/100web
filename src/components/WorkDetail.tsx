@@ -17,6 +17,12 @@ function splitParagraphs(text: string): string[] {
     .filter(Boolean);
 }
 
+// English descriptions mark work/publication titles with *asterisks*
+// (Korean uses 〈〉《》 quote brackets instead) — render those as italics
+function renderItalicized(text: string) {
+  return text.split(/\*(.+?)\*/g).map((segment, index) => (index % 2 === 1 ? <em key={index}>{segment}</em> : segment));
+}
+
 const WorkDetail = ({ work }: WorkDetailProps) => {
   const contacts = parseContacts(work.contact);
   const instagram = contacts.find((contact) => contact.type === 'instagram');
@@ -75,7 +81,7 @@ const WorkDetail = ({ work }: WorkDetailProps) => {
         </DescriptionBlock>
         <DescriptionBlock>
           {splitParagraphs(work.descriptionEn).map((paragraph, index) => (
-            <DescriptionEn key={`en-${index}`}>{paragraph}</DescriptionEn>
+            <DescriptionEn key={`en-${index}`}>{renderItalicized(paragraph)}</DescriptionEn>
           ))}
         </DescriptionBlock>
 

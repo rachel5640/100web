@@ -104,7 +104,7 @@ const Drawer = styled.aside<{ $open: boolean }>`
   z-index: 800;
   display: flex;
   flex-direction: column;
-  padding-top: 2rem;
+  padding-top: 1.5rem;
   background-color: ${({ theme }) => theme.colors.white};
 
   border-color: ${({ theme }) => theme.colors.lightgrey};
