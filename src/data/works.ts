@@ -252,13 +252,13 @@ const rawWorks: WorkInput[] = [
 
   {
     name: '강민서',
-    title: 'How To Build A Norma',
+    title: 'How to Build a Norma',
     slug: 'baekdanha',
     keyword: '100 Averages',
     descriptionKo:
-      '〈TRI-AXIS OF RULES〉는 세상에 존재하고 존재했던 수많은 규칙을 한자리에 모아, X·Y·Z 세 축으로 이루어진 좌표 위에 정렬해 볼 수 있는 웹사이트다.\n규칙은 보편성과 특수성 사이에서, 또 통제된 질서와 예기치 못한 우연 사이에서 끊임없이 모양을 바꾼다. 지금 이 웹 공간에는 이러한 맥락 속에서 특징적인 규칙 110개가 올라와 있지만 이 분류 방식이 110개라는 숫자에 묶여 있는 건 아니다. 세 축의 좌표는 이론상 세상의 그 어떤 규칙이든 대입해 자리를 매길 수 있도록 설계되었다. 이러한 무한한 확장성을 바탕으로, 이 작업은 눈에 보이지 않는 삶의 규칙들을 새로운 ‘알고리즘적 규칙’으로 재정의하고 매긴다. 규칙에 대한 규칙을 통해, 아침을 깨우는 알람이나 식탁 위의 예절부터 우주를 움직이는 물리 법칙까지, 세상의 온갖 규칙들을 좌표 공간으로 끌어올려 그 숨은 성질을 들여다보고자 한다.\n사용자들이 이 가상의 삼차원 공간을 탐색하면서, 자신을 둘러싼 규칙을 그저 구속이 아니라 세상을 받쳐주는 유연한 질서로, 혹은 깨어가며 유희를 탐할 수 있는 대상으로 다시 바라보기를 기대해본다.',
+      '《How to Build a Norma》는 평균이 객관적이고 합리적인 기준이라는 믿음에 질문을 던진다. 의류 사이즈, BMI, 얼굴 비율 등 사회의 많은 기준은 서로 다른 몸을 하나의 표준에 맞추도록 작동한다. 이 작업은 한 사람의 신체가 100개의 평균값에 따라 변화하는 과정을 통해, 평균이 인간을 설명하는 수치가 아니라 인간을 특정한 시스템에 맞추는 장치가 될 수 있음을 보여준다.\n‘노르마(Norma)’는 1940년대 미국의 인체 측정 연구에서 탄생한 평균적인 여성의 이름이다. 조각가 에이브럼 벨스키와 의학자 로버트 라투 디킨슨은 수천 명의 여성 신체 데이터를 평균 내어 ‘가장 평균적인 여성’의 조각상을 제작했다. 그러나 여러 평균값을 동시에 만족하는 실제 여성은 거의 존재하지 않았고, 이는 ‘평균적인 인간’이라는 개념의 모순을 드러냈다.\n이 작업은 이러한 사례를 뒤집어 제작자인 나의 몸을 100개의 평균값에 맞춰 수정한다. 포스터는 모든 평균이 적용된 최종 ‘노르마’를 실물 크기로 제시하고, 영상은 그 변화 과정을 기록한다. 이를 통해 평균이 개인의 몸에 적용될 때 무엇이 수정되고 사라지는지를 탐구한다.',
     descriptionEn:
-      '〈TRI-AXIS OF RULES〉 is a website that gathers countless rules from the past and present, mapping them onto a 3D coordinate system of X, Y, and Z axes.\nRules constantly shift between universality and specificity, and between order and chance. While this web space currently hosts 110 distinctive rules, the system has infinite scalability to accommodate any rule in existence. By redefining the invisible rules of daily life into new “algorithmic rules,” this project examines the hidden qualities of everything from morning alarms and dining etiquette to the laws of physics.\nAs users explore this virtual space, I hope they will view the rules around them not as mere constraints, but as a flexible order that supports our world or as a playful system to be broken and enjoyed.',
+      '《How to Build a Norma》 questions the belief that averages provide objective and rational standards. Social standards such as clothing sizes, BMI, and facial proportions often work to fit different bodies into a single norm. By showing one body transformed according to 100 averages, the project reveals how averages can function not as descriptions of people, but as devices for fitting them into a particular system.\n“Norma” was the name given to an average woman created through anthropometric research in 1940s America. Sculptor Abram Belskie and physician Robert Latou Dickinson produced a statue of the “average woman” by combining the body measurements of thousands of women. Yet almost no real woman matched multiple averages at once, exposing the contradiction within the idea of an “average person.”\nReversing this historical case, the project modifies my own body according to 100 averages. The poster presents the completed “Norma” at life size, while the video documents the process of transformation. Through these works, the project explores what is altered and what disappears when averages are applied to an individual body.',
     contact: '@minseo.kr',
     link: '',
   },
