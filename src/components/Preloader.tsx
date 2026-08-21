@@ -81,7 +81,6 @@ const Overlay = styled.div<{ $exiting: boolean }>`
 const Count = styled.span`
   ${({ theme }) => theme.fonts.Text01};
   font-size: clamp(5.6rem, 12vw, 16rem);
-  font-weight: 500;
   color: ${({ theme }) => theme.colors.white};
   min-width: 4ch;
   text-align: center;
