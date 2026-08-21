@@ -72,7 +72,7 @@ const fonts = {
   Text01: css`
     font-family: 'neue-haas-grotesk-text', 'Pretendard Variable', Pretendard, sans-serif;
 
-    font-weight: 700;
+    font-weight: 800;
     font-variation-settings: 'wght' 750;
 
     font-size: 1.4rem;
@@ -83,7 +83,7 @@ const fonts = {
   Text02: css`
     font-family: 'neue-haas-grotesk-text', 'Pretendard Variable', Pretendard, sans-serif;
 
-    font-weight: 700;
+    font-weight: 800;
     font-variation-settings: 'wght' 750;
     font-style: italic;
 

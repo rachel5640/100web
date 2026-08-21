@@ -1,3 +1,5 @@
+import './styles/fonts/fonts.css';
+
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
