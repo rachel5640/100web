@@ -30,8 +30,6 @@ const IntroText = styled.div`
   line-height: 1.5;
   color: ${({ theme }) => theme.colors.black};
 
-  font-weight: 900;
-
   p {
     margin-top: 0.6rem;
     font-size: 1rem;

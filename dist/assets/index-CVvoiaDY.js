@@ -449,8 +449,6 @@ This project begins with that question. It is an archival study that traces and 
   line-height: 1.5;
   color: ${({theme:e})=>e.colors.black};
 
-  font-weight: 900;
-
   p {
     margin-top: 0.6rem;
     font-size: 1rem;
