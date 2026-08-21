@@ -77,6 +77,7 @@ const ToggleButton = styled.button`
 
   img {
     display: block;
+    width: 3.5rem;
   }
 
   &:hover {
