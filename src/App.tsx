@@ -1,13 +1,13 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 
-import GlobalStyle from "./styles/GlobalStyle";
-import theme from "./styles/Theme";
-import MainPage from "./pages/MainPage";
+import MainPage from './pages/MainPage';
+import GlobalStyle from './styles/GlobalStyle';
+import theme from './styles/Theme';
 
 const router = createBrowserRouter([
   {
-    children: [{ path: "/", element: <MainPage /> }],
+    children: [{ path: '/', element: <MainPage /> }],
   },
 ]);
 
