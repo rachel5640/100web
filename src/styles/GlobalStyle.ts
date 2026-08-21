@@ -154,6 +154,16 @@ export const reset = css`
 const GlobalStyle = createGlobalStyle`
 ${reset}
 
+/* 'neue-haas-grotesk-text'는 한글 글리프가 없어 한글은 Pretendard 계열로 폴백되는데,
+   두 폰트의 어센트 비율이 달라 같은 줄에서 영문이 한글보다 살짝 떠 보인다.
+   같은 family 이름으로 재선언해 어센트만 낮춰 기준선을 맞춘다. */
+@font-face {
+  font-family: 'neue-haas-grotesk-text';
+  src: local('neue-haas-grotesk-text');
+  ascent-override: 90%;
+  font-display: swap;
+}
+
 #root, body, html {
     margin: 0 auto;
 

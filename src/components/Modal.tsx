@@ -2,6 +2,8 @@ import { type ReactNode, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import styled, { keyframes } from 'styled-components';
 
+import CloseBtn from '../assets/icon/closetransparentbtn.svg';
+
 const Modal = ({ open, onClose, children }: ModalProps) => {
   useEffect(() => {
     if (!open) return;
@@ -26,7 +28,7 @@ const Modal = ({ open, onClose, children }: ModalProps) => {
     <Overlay onClick={onClose}>
       <Panel onClick={(event) => event.stopPropagation()}>
         <CloseButton type="button" onClick={onClose} aria-label="닫기">
-          ×
+          <img src={CloseBtn} alt="closebtn" />
         </CloseButton>
         {children}
       </Panel>
@@ -63,7 +65,6 @@ const Overlay = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2.4rem;
   background: ${({ theme }) => theme.colors.overlay};
   backdrop-filter: blur(0.6rem);
   animation: ${fadeIn} 0.2s ease;
@@ -109,8 +110,9 @@ const Panel = styled.div`
 
 const CloseButton = styled.button`
   position: absolute;
+
   right: 1.5rem;
-  top: 1.5rem;
+  top: 2.5rem;
   width: 4rem;
   height: 4rem;
 
@@ -118,11 +120,27 @@ const CloseButton = styled.button`
   align-items: center;
   justify-content: center;
   z-index: 1;
-  border-radius: 50%;
-  background-color: ${({ theme }) => theme.colors.white};
+
+  & > img {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.border};
+    cursor: pointer;
+  }
+
+  @media (max-width: 720px) {
+    position: fixed;
+    top: 2rem;
+
+    width: 3rem;
+    height: 3rem;
+
+    & > img {
+      width: 2.4rem;
+      height: 2.4rem;
+    }
   }
 `;
 

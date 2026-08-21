@@ -161,6 +161,10 @@ const KeywordText = styled.span`
   color: ${({ theme }) => theme.colors.grey};
   ${({ theme }) => theme.fonts.Title01};
   font-size: 15rem;
+
+  @media (max-width: 720px) {
+    font-size: 8rem;
+  }
 `;
 
 const shuffleIn = keyframes`

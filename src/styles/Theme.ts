@@ -7,7 +7,7 @@ const colors = {
   border: '#E5E4E7',
 
   lightgrey: '#CCCCCC',
-  grey: '#6F6F6F',
+  grey: '#9F9F9F',
 
   overlay: 'rgba(10, 10, 12, 0.55)',
   preloaderBg: '#0B0B0C',

@@ -20,7 +20,7 @@ function splitParagraphs(text: string): string[] {
 const WorkDetail = ({ work }: WorkDetailProps) => {
   const contacts = parseContacts(work.contact);
   const instagram = contacts.find((contact) => contact.type === 'instagram');
-  const otherContacts = contacts.filter((contact) => contact.type !== 'instagram');
+  const emails = contacts.filter((contact) => contact.type === 'email');
   const linkKind = work.link ? getLinkKind(work.link) : null;
   const videoEmbedUrl = linkKind === 'video' && work.link ? getVideoEmbedUrl(work.link) : null;
   // detail images take over once they exist; the thumbnail is just a
@@ -34,10 +34,15 @@ const WorkDetail = ({ work }: WorkDetailProps) => {
         <Eyebrow>
           {work.name}
           {instagram && (
-            <InstagramHandle href={instagram.href} target="_blank" rel="noreferrer">
+            <ContactHandle href={instagram.href} target="_blank" rel="noreferrer">
               {instagram.label}
-            </InstagramHandle>
+            </ContactHandle>
           )}
+          {emails.map((contact) => (
+            <ContactHandle key={contact.href} href={contact.href} rel="noreferrer">
+              {contact.label}
+            </ContactHandle>
+          ))}
         </Eyebrow>
       </Header>
 
@@ -74,19 +79,10 @@ const WorkDetail = ({ work }: WorkDetailProps) => {
           ))}
         </DescriptionBlock>
 
-        {(otherContacts.length > 0 || (linkKind === 'website' && work.link)) && (
-          <LinkRow>
-            {otherContacts.map((contact) => (
-              <LinkPill key={contact.href} href={contact.href} rel="noreferrer">
-                Mail to
-              </LinkPill>
-            ))}
-            {linkKind === 'website' && work.link && (
-              <LinkPill href={work.link} target="_blank" rel="noreferrer">
-                Website
-              </LinkPill>
-            )}
-          </LinkRow>
+        {linkKind === 'website' && work.link && (
+          <WebsiteLink href={work.link} target="_blank" rel="noreferrer">
+            Website
+          </WebsiteLink>
         )}
       </Info>
     </>
@@ -95,16 +91,26 @@ const WorkDetail = ({ work }: WorkDetailProps) => {
 
 const Header = styled.div`
   grid-area: header;
-  padding: 4rem 4rem 0;
+  padding: 3rem 6rem 0 2rem;
   text-align: left;
 
   h2 {
     white-space: pre-line;
+    line-height: 130%;
+
     ${({ theme }) => theme.fonts.Title01};
+
+    @media (max-width: 720px) {
+      font-size: 2.2rem;
+      padding-right: 5rem;
+    }
   }
 
   @media (max-width: 720px) {
+    position: sticky;
+    top: 0;
     padding: 2rem 1.5rem 0;
+    background: ${({ theme }) => theme.colors.white};
   }
 `;
 
@@ -113,7 +119,7 @@ const ImageColumn = styled.div`
   display: flex;
   flex-direction: column;
 
-  min-height: 0; /* flex items default to min-height: auto, which blocks overflow-y from ever scrolling */
+  min-height: 0;
   overflow-y: scroll;
 
   @media (max-width: 720px) {
@@ -129,47 +135,45 @@ const GalleryImage = styled.img`
 
 const Info = styled.div`
   grid-area: details;
-  padding: 2rem 4rem 4rem;
+
+  padding: 4rem 6rem 4rem 2rem;
   overflow-y: auto;
-  min-height: 0;
   text-align: left;
 
   @media (max-width: 720px) {
     padding: 1.5rem;
     overflow-y: visible;
   }
+
+  @media (max-width: 720px) {
+    padding-bottom: 8rem;
+  }
 `;
 
 const Eyebrow = styled.p`
-  margin: 0 0 0.4rem;
+  margin: 0.7rem 0rem;
 
   ${({ theme }) => theme.fonts.Text01};
 `;
 
-const InstagramHandle = styled.a`
-  margin-left: 0.8rem;
-  color: ${({ theme }) => theme.colors.black};
+const ContactHandle = styled.a`
+  margin-left: 0.5rem;
+  color: ${({ theme }) => theme.colors.grey};
+  ${({ theme }) => theme.fonts.Text01};
 
   &:hover {
     color: ${({ theme }) => theme.colors.grey};
   }
 `;
 
-const LinkRow = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
-`;
-
-const LinkPill = styled.a`
-  display: inline-flex;
-  align-items: center;
-  padding: 0.6rem 1.2rem;
-  border: 0.1rem solid ${({ theme }) => theme.colors.border};
-  border-radius: 99.9rem;
-  font-size: 0.85em;
+const WebsiteLink = styled.a`
+  display: inline-block;
+  margin-top: 1.5rem;
 
   ${({ theme }) => theme.fonts.Text01};
+  color: ${({ theme }) => theme.colors.black};
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
 
   &:hover {
     color: ${({ theme }) => theme.colors.grey};
@@ -177,7 +181,7 @@ const LinkPill = styled.a`
 `;
 
 const DescriptionBlock = styled.div`
-  margin-bottom: 1.5em;
+  margin-bottom: 1rem;
 
   &:last-of-type {
     margin-bottom: 0;
@@ -185,7 +189,6 @@ const DescriptionBlock = styled.div`
 `;
 
 const Description = styled.p`
-  margin: 0 0 1em;
   ${({ theme }) => theme.fonts.Text01};
 
   &:last-child {
