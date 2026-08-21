@@ -8,45 +8,48 @@ const MainPage = () => {
   return (
     <>
       <Preloader />
-      <TitleText>
-        100 프로젝트
-        <br />
-        사회문화적디자인스튜디오(3)
-        <br />
-        Research Design Studio(3)
-      </TitleText>
+      <TextWrapper>
+        <TitleText>
+          100 프로젝트
+          <br />
+          사회문화적디자인스튜디오(3)
+          <br />
+          Research Design Studio(3)
+        </TitleText>
 
-      <IntroText>
-        2026 © Hongik University <br />
-        Dept. of Visual Communication Design. <br />
-        All Rights Reserved
-      </IntroText>
+        <IntroText>
+          2026 © Hongik University <br />
+          Dept. of Visual Communication Design. <br />
+          All Rights Reserved
+        </IntroText>
+      </TextWrapper>
       <InfiniteGallery />
     </>
   );
 };
 
-const TitleText = styled.h2`
+const TextWrapper = styled.div`
   position: fixed;
   top: 2rem;
   left: 2rem;
+  display: flex;
   z-index: 500;
+  gap: 8rem;
   pointer-events: none;
-  ${({ theme }) => theme.fonts.Text01};
-  line-height: 1.4;
-  min-width: 20rem;
 
   @media (max-width: 720px) {
-    max-width: calc(100vw - 10rem);
-    font-size: 1rem;
-    top: 1rem;
+    flex-direction: column;
+    gap: 2rem;
   }
 `;
 
+const TitleText = styled.h2`
+  ${({ theme }) => theme.fonts.Text01};
+  line-height: 1.4;
+  min-width: 20rem;
+`;
+
 const IntroText = styled.div`
-  position: fixed;
-  top: 2rem;
-  left: 20%;
   z-index: 500;
   pointer-events: none;
   min-width: 20rem;
@@ -55,13 +58,6 @@ const IntroText = styled.div`
 
   line-height: 1.4;
   color: ${({ theme }) => theme.colors.black};
-
-  @media (max-width: 720px) {
-    max-width: calc(100vw - 10rem);
-    font-size: 1rem;
-    top: 6.5rem;
-    left: 2rem;
-  }
 `;
 
 export default MainPage;

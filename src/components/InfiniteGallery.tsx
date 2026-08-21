@@ -127,7 +127,7 @@ const Viewport = styled.div<{ $dragging: boolean }>`
   position: fixed;
   inset: 0;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.white};
+  background: #f8f8f8d;
   cursor: ${({ $dragging }) => ($dragging ? 'grabbing' : 'grab')};
   touch-action: none;
 `;
