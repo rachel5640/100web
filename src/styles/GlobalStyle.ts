@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from "styled-components";
+import { createGlobalStyle, css } from 'styled-components';
 
 export const reset = css`
   html,
@@ -134,7 +134,7 @@ export const reset = css`
   blockquote::after,
   q::before,
   q::after {
-    content: "";
+    content: '';
     content: none;
   }
 
@@ -151,26 +151,8 @@ export const reset = css`
     cursor: pointer;
   }
 `;
-const cursorCircle = css`
-  cursor:
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'><circle cx='14' cy='14' r='11' fill='%2380745A' fill-opacity='0.55'/></svg>")
-      14 14,
-    auto;
-`;
-
-export const cursorCircleHover = css`
-  cursor:
-    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'><circle cx='14' cy='14' r='11' fill='%2380745A' fill-opacity='1'/></svg>")
-      14 14,
-    pointer;
-`;
-
 const GlobalStyle = createGlobalStyle`
 ${reset}
-
-html, body, button, a, input, textarea {
-  ${cursorCircle}
-}
 
 #root, body, html {
     margin: 0 auto;

@@ -1,0 +1,17 @@
+{
+  "ignoreFiles": ["src/styles/Theme.ts"],
+  "extends": ["stylelint-config-recommended", "stylelint-config-concentric-order"],
+  "rules": {
+    "no-empty-source": null,
+    "no-invalid-position-declaration": null,
+    "nesting-selector-no-missing-scoping-root": null,
+    "value-no-vendor-prefix": true,
+    "property-no-vendor-prefix": true
+  },
+  "overrides": [
+    {
+      "files": ["**/*.{ts,tsx,js,jsx}"],
+      "customSyntax": "@stylelint/postcss-css-in-js"
+    }
+  ]
+}

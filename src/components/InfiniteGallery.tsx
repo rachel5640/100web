@@ -1,23 +1,46 @@
 import {
+  type CSSProperties,
+  type PointerEvent as ReactPointerEvent,
   useCallback,
   useEffect,
   useMemo,
   useRef,
   useState,
-  type PointerEvent as ReactPointerEvent,
-} from "react";
-import styled from "styled-components";
+} from 'react';
+import styled, { css, keyframes } from 'styled-components';
 
-import { galleryImages, type GalleryImage } from "../data/galleryImages";
-import Modal from "./Modal";
+import { type Work, works } from '../data/works';
+import Modal from './Modal';
+import WorkDetail from './WorkDetail';
+import WorkListPanel from './WorkListPanel';
 
-const CELL_WIDTH = 340;
-const CELL_HEIGHT = 440;
-const CARD_WIDTH = 240;
-const CARD_HEIGHT = 320; // matches the 900x1200 (3:4) source aspect ratio
-const JITTER = 70;
+const CARD_HEIGHT_VH = 0.3;
+const CARD_ASPECT = 900 / 1200; // width : height, matches the source images
+const GUTTER_X_RATIO = 100 / 320;
+const GUTTER_Y_RATIO = 120 / 320;
+const JITTER_RATIO = 70 / 320;
 const BUFFER = 2;
 const CLICK_THRESHOLD = 6;
+
+interface CardMetrics {
+  cardWidth: number;
+  cardHeight: number;
+  cellWidth: number;
+  cellHeight: number;
+  jitter: number;
+}
+
+function computeCardMetrics(viewportHeight: number): CardMetrics {
+  const cardHeight = viewportHeight * CARD_HEIGHT_VH;
+  const cardWidth = cardHeight * CARD_ASPECT;
+  return {
+    cardWidth,
+    cardHeight,
+    cellWidth: cardWidth + cardHeight * GUTTER_X_RATIO,
+    cellHeight: cardHeight + cardHeight * GUTTER_Y_RATIO,
+    jitter: cardHeight * JITTER_RATIO,
+  };
+}
 
 // momentum glide after releasing a drag
 const VELOCITY_SAMPLE_WINDOW = 120; // ms of recent pointer history used to estimate fling speed
@@ -27,28 +50,85 @@ const MOMENTUM_STOP_SPEED = 0.03; // px/ms below which the glide is considered s
 
 // deterministic pseudo-random value in [0, 1) for a given grid cell + salt
 function hash(x: number, y: number, salt: number) {
-  let h =
-    Math.imul(x, 374761393) ^
-    Math.imul(y, 668265263) ^
-    Math.imul(salt, 2246822519);
+  let h = Math.imul(x, 374761393) ^ Math.imul(y, 668265263) ^ Math.imul(salt, 2246822519);
   h = Math.imul(h ^ (h >>> 13), 1274126177);
   h ^= h >>> 16;
   return (h >>> 0) / 4294967296;
+}
+
+function gcd(a: number, b: number): number {
+  return b === 0 ? a : gcd(b, a % b);
+}
+
+// find (a, b), both coprime with n, whose linear grid index a*col + b*row (mod n)
+// keeps identical values as far apart as possible — this is what keeps the same
+// work from showing up twice within one screenful of tiles
+function findSpreadCoprimePair(n: number, searchRadius = 8) {
+  if (n < 2) return { a: 1, b: 1 };
+
+  let best = { a: 1, b: 1, distance: -1 };
+  for (let a = 2; a < n; a += 1) {
+    if (gcd(a, n) !== 1) continue;
+    for (let b = 2; b < n; b += 1) {
+      if (a === b || gcd(b, n) !== 1) continue;
+
+      let minDistance = Infinity;
+      for (let dc = -searchRadius; dc <= searchRadius; dc += 1) {
+        for (let dr = -searchRadius; dr <= searchRadius; dr += 1) {
+          if (dc === 0 && dr === 0) continue;
+          if ((((a * dc + b * dr) % n) + n) % n === 0) {
+            minDistance = Math.min(minDistance, Math.max(Math.abs(dc), Math.abs(dr)));
+          }
+        }
+      }
+      if (minDistance > best.distance) {
+        best = { a, b, distance: minDistance };
+      }
+    }
+  }
+  return { a: best.a, b: best.b };
+}
+
+function shuffle<T>(items: T[]): T[] {
+  const result = [...items];
+  for (let i = result.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
+function computeGridBounds(
+  offsetX: number,
+  offsetY: number,
+  width: number,
+  height: number,
+  cellWidth: number,
+  cellHeight: number
+) {
+  return {
+    colStart: Math.floor(-offsetX / cellWidth) - BUFFER,
+    colEnd: Math.ceil((-offsetX + width) / cellWidth) + BUFFER,
+    rowStart: Math.floor(-offsetY / cellHeight) - BUFFER,
+    rowEnd: Math.ceil((-offsetY + height) / cellHeight) + BUFFER,
+  };
 }
 
 interface Tile {
   key: string;
   left: number;
   top: number;
-  image: GalleryImage;
+  work: Work;
+  delay: number;
+  rotate: number;
 }
 
 const Viewport = styled.div<{ $dragging: boolean }>`
   position: fixed;
   inset: 0;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors};
-  cursor: ${({ $dragging }) => ($dragging ? "grabbing" : "grab")};
+  background: ${({ theme }) => theme.colors.white};
+  cursor: ${({ $dragging }) => ($dragging ? 'grabbing' : 'grab')};
   touch-action: none;
 `;
 
@@ -56,17 +136,61 @@ const World = styled.div`
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 1;
   will-change: transform;
 `;
 
-const Card = styled.button<{ $left: number; $top: number }>`
+const KeywordBackdrop = styled.div<{ $visible: boolean }>`
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
+
+  transition: opacity 0.3s ease;
+`;
+
+const KeywordText = styled.span`
+  font-size: clamp(4rem, 12vw, 16rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+  color: ${({ theme }) => theme.colors.grey};
+  ${({ theme }) => theme.fonts.Title01};
+  font-size: 15rem;
+`;
+
+const shuffleIn = keyframes`
+  from {
+    opacity: 0;
+    transform: scale(0.4) rotate(var(--shuffle-rotate, 0deg));
+  }
+  60% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+`;
+
+const Card = styled.button<{ $left: number; $top: number; $shuffleIn?: boolean }>`
   position: absolute;
   left: ${({ $left }) => $left}px;
   top: ${({ $top }) => $top}px;
-  width: ${CARD_WIDTH}px;
-  height: ${CARD_HEIGHT}px;
+  width: var(--card-width);
+  height: var(--card-height);
   padding: 0;
   cursor: inherit;
+  ${({ $shuffleIn }) =>
+    $shuffleIn &&
+    css`
+      animation: ${shuffleIn} 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: var(--shuffle-delay, 0s);
+    `}
 `;
 
 const CardImage = styled.img`
@@ -76,40 +200,6 @@ const CardImage = styled.img`
   display: block;
   pointer-events: none;
   user-select: none;
-`;
-
-const ModalImage = styled.img`
-  width: 340px;
-  max-width: 40vw;
-  height: 100%;
-  min-height: 320px;
-  object-fit: cover;
-  display: block;
-
-  @media (max-width: 720px) {
-    width: 100%;
-    max-width: 100%;
-    min-height: 240px;
-  }
-`;
-
-const ModalInfo = styled.div`
-  padding: 40px;
-  overflow-y: auto;
-  text-align: left;
-
-  h2 {
-    margin: 0 0 8px;
-  }
-
-  p {
-    margin: 0 0 12px;
-    color: var(--text);
-  }
-
-  p:last-child {
-    margin-bottom: 0;
-  }
 `;
 
 interface DragState {
@@ -144,13 +234,46 @@ const InfiniteGallery = () => {
     width: window.innerWidth,
     height: window.innerHeight,
   });
-  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [cardMetrics, setCardMetrics] = useState(() => computeCardMetrics(window.innerHeight));
+  const [selectedWork, setSelectedWork] = useState<Work | null>(null);
+  const [hoveredWork, setHoveredWork] = useState<Work | null>(null);
+
+  // shuffled once per page load: which work sits in which grid slot, spaced
+  // out via a Latin-square index so the same work can't land twice on one
+  // screen, plus a random jitter seed so the scatter itself differs too
+  const [layout] = useState(() => {
+    const { a, b } = findSpreadCoprimePair(works.length);
+    const initialMetrics = computeCardMetrics(window.innerHeight);
+    const bounds = computeGridBounds(
+      0,
+      0,
+      window.innerWidth,
+      window.innerHeight,
+      initialMetrics.cellWidth,
+      initialMetrics.cellHeight
+    );
+    const initialKeys = new Set<string>();
+    for (let row = bounds.rowStart; row <= bounds.rowEnd; row += 1) {
+      for (let col = bounds.colStart; col <= bounds.colEnd; col += 1) {
+        initialKeys.add(`${col}_${row}`);
+      }
+    }
+    return {
+      order: shuffle(works),
+      a,
+      b,
+      jitterSeed: Math.floor(Math.random() * 100000),
+      initialKeys,
+    };
+  });
 
   useEffect(() => {
-    const handleResize = () =>
+    const handleResize = () => {
       setViewportSize({ width: window.innerWidth, height: window.innerHeight });
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+      setCardMetrics(computeCardMetrics(window.innerHeight));
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
@@ -249,10 +372,7 @@ const InfiniteGallery = () => {
 
     const dx = event.clientX - drag.startX;
     const dy = event.clientY - drag.startY;
-    if (
-      !movedRef.current &&
-      (Math.abs(dx) > CLICK_THRESHOLD || Math.abs(dy) > CLICK_THRESHOLD)
-    ) {
+    if (!movedRef.current && (Math.abs(dx) > CLICK_THRESHOLD || Math.abs(dy) > CLICK_THRESHOLD)) {
       // only capture once an actual drag starts — capturing on pointerdown
       // would redirect the click event away from the tapped card and the
       // modal would never open
@@ -262,9 +382,7 @@ const InfiniteGallery = () => {
 
     const now = performance.now();
     historyRef.current.push({ x: event.clientX, y: event.clientY, t: now });
-    historyRef.current = historyRef.current.filter(
-      (sample) => now - sample.t <= VELOCITY_SAMPLE_WINDOW,
-    );
+    historyRef.current = historyRef.current.filter((sample) => now - sample.t <= VELOCITY_SAMPLE_WINDOW);
 
     const nextX = drag.originX + dx;
     const nextY = drag.originY + dy;
@@ -285,34 +403,42 @@ const InfiniteGallery = () => {
   };
 
   const tiles = useMemo<Tile[]>(() => {
-    const colStart = Math.floor(-offset.x / CELL_WIDTH) - BUFFER;
-    const colEnd =
-      Math.ceil((-offset.x + viewportSize.width) / CELL_WIDTH) + BUFFER;
-    const rowStart = Math.floor(-offset.y / CELL_HEIGHT) - BUFFER;
-    const rowEnd =
-      Math.ceil((-offset.y + viewportSize.height) / CELL_HEIGHT) + BUFFER;
+    const { cellWidth, cellHeight, cardWidth, cardHeight, jitter } = cardMetrics;
+    const { colStart, colEnd, rowStart, rowEnd } = computeGridBounds(
+      offset.x,
+      offset.y,
+      viewportSize.width,
+      viewportSize.height,
+      cellWidth,
+      cellHeight
+    );
 
+    const n = layout.order.length;
     const result: Tile[] = [];
     for (let row = rowStart; row <= rowEnd; row += 1) {
       for (let col = colStart; col <= colEnd; col += 1) {
-        const imageIndex = Math.floor(hash(col, row, 1) * galleryImages.length);
-        const jitterX = (hash(col, row, 2) - 0.5) * JITTER;
-        const jitterY = (hash(col, row, 3) - 0.5) * JITTER;
+        const workIndex = (((layout.a * col + layout.b * row) % n) + n) % n;
+        const jitterX = (hash(col, row, layout.jitterSeed + 2) - 0.5) * jitter;
+        const jitterY = (hash(col, row, layout.jitterSeed + 3) - 0.5) * jitter;
+        const delay = hash(col, row, layout.jitterSeed + 4) * 0.4;
+        const rotate = (hash(col, row, layout.jitterSeed + 5) - 0.5) * 24;
 
         result.push({
           key: `${col}_${row}`,
-          left: col * CELL_WIDTH + (CELL_WIDTH - CARD_WIDTH) / 2 + jitterX,
-          top: row * CELL_HEIGHT + (CELL_HEIGHT - CARD_HEIGHT) / 2 + jitterY,
-          image: galleryImages[imageIndex],
+          left: col * cellWidth + (cellWidth - cardWidth) / 2 + jitterX,
+          top: row * cellHeight + (cellHeight - cardHeight) / 2 + jitterY,
+          work: layout.order[workIndex],
+          delay,
+          rotate,
         });
       }
     }
     return result;
-  }, [offset, viewportSize]);
+  }, [offset, viewportSize, layout, cardMetrics]);
 
-  const handleCardClick = (image: GalleryImage) => {
+  const handleCardClick = (work: Work) => {
     if (movedRef.current) return;
-    setSelectedImage(image);
+    setSelectedWork(work);
   };
 
   return (
@@ -323,47 +449,50 @@ const InfiniteGallery = () => {
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={endDrag}
-        onPointerCancel={endDrag}
-      >
+        onPointerCancel={endDrag}>
+        <KeywordBackdrop $visible={hoveredWork !== null}>
+          <KeywordText>{hoveredWork?.keyword}</KeywordText>
+        </KeywordBackdrop>
         <World
           ref={worldRef}
-          style={{ transform: `translate3d(${offset.x}px, ${offset.y}px, 0)` }}
-        >
-          {tiles.map((tile) => (
-            <Card
-              key={tile.key}
-              type="button"
-              $left={tile.left}
-              $top={tile.top}
-              onClick={() => handleCardClick(tile.image)}
-            >
-              <CardImage
-                src={tile.image.src}
-                alt={tile.image.title}
-                draggable={false}
-                loading="lazy"
-              />
-            </Card>
-          ))}
+          style={
+            {
+              transform: `translate3d(${offset.x}px, ${offset.y}px, 0)`,
+              '--card-width': `${cardMetrics.cardWidth}px`,
+              '--card-height': `${cardMetrics.cardHeight}px`,
+            } as CSSProperties
+          }>
+          {tiles.map((tile) => {
+            const isInitial = layout.initialKeys.has(tile.key);
+            const style = isInitial
+              ? ({
+                  '--shuffle-delay': `${tile.delay}s`,
+                  '--shuffle-rotate': `${tile.rotate}deg`,
+                } as CSSProperties)
+              : undefined;
+
+            return (
+              <Card
+                key={tile.key}
+                type="button"
+                $left={tile.left}
+                $top={tile.top}
+                $shuffleIn={isInitial}
+                style={style}
+                onClick={() => handleCardClick(tile.work)}
+                onMouseEnter={() => setHoveredWork(tile.work)}
+                onMouseLeave={() => setHoveredWork(null)}>
+                <CardImage src={tile.work.thumbnail} alt={tile.work.title} draggable={false} loading="lazy" />
+              </Card>
+            );
+          })}
         </World>
       </Viewport>
 
-      <Modal
-        open={selectedImage !== null}
-        onClose={() => setSelectedImage(null)}
-      >
-        {selectedImage && (
-          <>
-            <ModalImage src={selectedImage.src} alt={selectedImage.title} />
-            <ModalInfo>
-              <h2>{selectedImage.title}</h2>
-              <p>
-                {selectedImage.category} · {selectedImage.year}
-              </p>
-              <p>{selectedImage.description}</p>
-            </ModalInfo>
-          </>
-        )}
+      <WorkListPanel onSelect={setSelectedWork} />
+
+      <Modal open={selectedWork !== null} onClose={() => setSelectedWork(null)}>
+        {selectedWork && <WorkDetail work={selectedWork} />}
       </Modal>
     </>
   );

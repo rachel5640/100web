@@ -1,7 +1,13 @@
-import InfiniteGallery from "../components/InfiniteGallery";
+import InfiniteGallery from '../components/InfiniteGallery';
+import Preloader from '../components/Preloader';
 
 const MainPage = () => {
-  return <InfiniteGallery />;
+  return (
+    <>
+      <Preloader />
+      <InfiniteGallery />
+    </>
+  );
 };
 
 export default MainPage;
