@@ -137,12 +137,13 @@ const List = styled.ul`
 `;
 
 const ListName = styled.div`
-  width: 15%;
+  width: 20%;
   line-height: 1.45;
   padding: 0 1rem;
   white-space: pre-line;
 
   ${({ theme }) => theme.fonts.Text01};
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 const ListTitle = styled.div`
@@ -152,12 +153,14 @@ const ListTitle = styled.div`
   width: 50%;
   line-height: 1.45;
   white-space: pre-line;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 const ListKeyword = styled.div`
   ${({ theme }) => theme.fonts.Text01};
   width: 20%;
   line-height: 1.45;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 const ListItem = styled.li`
