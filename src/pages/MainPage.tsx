@@ -39,7 +39,8 @@ const TextWrapper = styled.div`
 
   @media (max-width: 720px) {
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
+    left: 1.8rem;
   }
 `;
 
@@ -47,6 +48,10 @@ const TitleText = styled.h2`
   ${({ theme }) => theme.fonts.Text01};
   line-height: 1.4;
   min-width: 20rem;
+
+  @media (max-width: 720px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const IntroText = styled.div`
@@ -58,6 +63,10 @@ const IntroText = styled.div`
 
   line-height: 1.4;
   color: ${({ theme }) => theme.colors.black};
+
+  @media (max-width: 720px) {
+    font-size: 1.2rem;
+  }
 `;
 
 export default MainPage;
