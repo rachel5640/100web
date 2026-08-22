@@ -332,13 +332,14 @@ const rawWorks: WorkInput[] = [
     contact: '@onemoogy',
   },
   {
-    // TODO: dummy placeholder data — replace with 김주현's real title/keyword/description/contact
     name: '김주현',
-    title: '제목 미정',
+    title: 'The Best Book Design 100',
     slug: 'kimjuhyeon',
     keyword: '100 Books',
-    descriptionKo: '작품 설명이 아직 준비되지 않았습니다.',
-    descriptionEn: 'Description coming soon.',
+    descriptionKo:
+      '『100권의 가장 아름다운 책』은 사람들이 책의 형식과 물성에서 아름다움을 발견하는 지점을 수집한다. 책을 디자인하고, 만들고, 읽고, 수집하는 100명의 사람들에게 각자가 생각하는 ‘가장 아름다운 책’ 한 권과 그 이유를 묻고, 그 100개의 선택을 모은다.\n수집된 책과 판단의 근거는 종이와 판형, 서체와 레이아웃, 제본, 인쇄와 후가공 등 북디자인을 구성하는 요소를 기준으로 다시 분류된다. 이를 통해 아름다운 책을 하나의 기준으로 정의하기보다, 서로 다른 사람들이 책의 물성과 구조, 내용과 형식의 관계를 어떻게 감각하는지 보여준다.',
+    descriptionEn:
+      '*The Best Book Design 100* collects the moments in which people perceive aesthetic quality in the form and materiality of books. One hundred people who design, make, read, and collect books are each asked to select the book they consider “the best design” and explain why.\nThe collected books and the reasons behind each selection are then categorized according to the elements that constitute book design, including paper, format, typography and layout, binding, printing, and finishing. Rather than establishing a single standard for evaluating book design, the project reveals how different people perceive the materiality and structure of books, as well as the relationship between content and form.',
     contact: '',
   },
   {
