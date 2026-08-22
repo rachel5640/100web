@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import { useState } from 'react';
+import styled, { keyframes } from 'styled-components';
 
 import type { Work } from '../data/works';
 import { parseContacts } from '../utils/contact';
@@ -22,6 +23,23 @@ function splitParagraphs(text: string): string[] {
 function renderItalicized(text: string) {
   return text.split(/\*(.+?)\*/g).map((segment, index) => (index % 2 === 1 ? <em key={index}>{segment}</em> : segment));
 }
+
+interface DetailImageProps {
+  src: string;
+  alt: string;
+  loading?: 'lazy';
+}
+
+const DetailImage = ({ src, alt, loading }: DetailImageProps) => {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <ImageWrapper $loaded={loaded}>
+      {!loaded && <Loader />}
+      <GalleryImage src={src} alt={alt} loading={loading} $loaded={loaded} onLoad={() => setLoaded(true)} />
+    </ImageWrapper>
+  );
+};
 
 const WorkDetail = ({ work }: WorkDetailProps) => {
   const contacts = parseContacts(work.contact);
@@ -54,7 +72,7 @@ const WorkDetail = ({ work }: WorkDetailProps) => {
 
       <ImageColumn>
         {images.map((src, index) => (
-          <GalleryImage
+          <DetailImage
             key={src}
             src={src}
             alt={`${work.title} 이미지 ${index + 1}`}
@@ -134,9 +152,41 @@ const ImageColumn = styled.div`
   }
 `;
 
-const GalleryImage = styled.img`
+const ImageWrapper = styled.div<{ $loaded: boolean }>`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const GalleryImage = styled.img<{ $loaded: boolean }>`
   width: 100%;
   display: block;
+  opacity: ${({ $loaded }) => ($loaded ? 1 : 0)};
+  transition: opacity 0.3s ease;
+`;
+
+const loaderPulse = keyframes`
+  50% {
+    box-shadow: 19px 0 0 3px, 38px 0 0 7px, 57px 0 0 3px;
+  }
+  100% {
+    box-shadow: 19px 0 0 0, 38px 0 0 3px, 57px 0 0 7px;
+  }
+`;
+
+const Loader = styled.span`
+  position: absolute;
+  color: ${({ theme }) => theme.colors.lightgrey};
+  width: 4px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  box-shadow:
+    19px 0 0 7px,
+    38px 0 0 3px,
+    57px 0 0 0;
+  transform: translateX(-38px);
+  animation: ${loaderPulse} 0.5s infinite alternate linear;
 `;
 
 const Info = styled.div`
