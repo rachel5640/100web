@@ -6,6 +6,7 @@ import listIcon from '../assets/icon/listicon.svg';
 import { type Work, works } from '../data/works';
 
 interface WorkListPanelProps {
+  // eslint-disable-next-line no-unused-vars
   onSelect: (work: Work) => void;
 }
 

@@ -75,7 +75,7 @@ const rawWorks: WorkInput[] = [
     descriptionKo:
       '인터넷 시대의 이미지는 끊임없이 생산되고 복제되며 사라진다. 사람들은 개별 이미지를 소비하기보다 특정 색감, 분위기, 오브제, 장소, 감정을 하나의 감각으로 묶어 이해하고 공유하며, 이러한 현상은 오늘날 인터넷 슬랭인 ‘-core’로 나타난다. THE NEW CORE PROJECT는 디지털 공간에서 발견한 100개의 코어를 수집·정리한 시각 아카이브로, 반복되는 이미지와 시각적 요소들이 하나의 이름 아래 새로운 미감과 정체성을 형성하는 과정을 기록한다. 출처를 잃은 채 복제와 재조합을 거듭하며 떠도는 인터넷 이미지를 활용하고, 중첩되고 부유하는 레이아웃을 통해 디지털 환경의 특성을 시각화함으로써, 코어를 단순한 유행이 아닌 인터넷 시대가 이미지를 이해하고 감각을 조직하는 하나의 방식으로 제안한다.',
     descriptionEn:
-      'In the age of the internet, images are constantly created, replicated, and forgotten. Rather than consuming them individually, people group recurring colors, moods, objects, places, and emotions into shared aesthetic categories—an emerging visual language commonly expressed through the suffix “-core.” THE NEW CORE PROJECT is a visual archive of 100 cores collected from digital culture, documenting how repeated images and visual patterns evolve into recognizable aesthetics and identities through collective perception. Most of the images originate from anonymous internet circulation, endlessly copied, remixed, and detached from their original sources. By embracing layered, overlapping layouts that reflect the chaotic flow of digital media, the project presents “core” not simply as an internet trend, but as a contemporary system for organizing visual experience and understanding how aesthetics are formed in the age of endless reproduction.',
+      'In the age of the internet, images are constantly created, replicated, and forgotten. Rather than consuming them individually, people group recurring colors, moods, objects, places, and emotions into shared aesthetic categories—an emerging visual language commonly expressed through the suffix “-core.” *THE NEW CORE PROJECT* is a visual archive of 100 cores collected from digital culture, documenting how repeated images and visual patterns evolve into recognizable aesthetics and identities through collective perception. Most of the images originate from anonymous internet circulation, endlessly copied, remixed, and detached from their original sources. By embracing layered, overlapping layouts that reflect the chaotic flow of digital media, the project presents “core” not simply as an internet trend, but as a contemporary system for organizing visual experience and understanding how aesthetics are formed in the age of endless reproduction.',
     contact: '@march_g2',
   },
   {
@@ -105,7 +105,7 @@ const rawWorks: WorkInput[] = [
     name: '정우현',
     title: '형태를 설득하는 방법',
     slug: 'jungwoohyun',
-    keyword: '100 Prsuasions',
+    keyword: '100 Pursuasions',
     descriptionKo:
       '형태 자체에 근거가 깃드는 것은 디자이너가 더 나은 방식으로 소통하고 있다는 증거다. 형태의 도출 이유를 논리적으로 설명할 수 있기에 단순한 주관적 감각을 넘어선 신뢰를 심어준다. ｢형태를 설득하는 방법｣에서는 형태에 설득력을 부여하는 다양한 길들을 사유해 본다. 책에 기록한 내용들은 정답이 아니며, 지극히 개인적 판단일 뿐이다. 완벽한 형태란 이데아와 같다. 비록 그 본질에 닿을 수는 없더라도 끊임없이 가까워지고 싶은 열망과 갈증은 유효하다.',
     descriptionEn:
@@ -114,7 +114,7 @@ const rawWorks: WorkInput[] = [
   },
   {
     name: '이린',
-    title: '100개의 현재 (100 presents)',
+    title: '100개의 현재 \n100 presents',
     slug: 'leelynn',
     keyword: '100 Presents',
     descriptionKo:
@@ -170,7 +170,7 @@ const rawWorks: WorkInput[] = [
   },
   {
     name: '정지은',
-    title: '예민한 비둘기, Sensitive Pigeon',
+    title: '예민한 비둘기\nSensitive Pigeon',
     slug: 'jeongjieun',
     keyword: '100 Sensitivities',
     descriptionKo:
@@ -233,7 +233,7 @@ const rawWorks: WorkInput[] = [
     descriptionKo:
       '10 Strangers 100 Stories는 서로 다른 장소와 언어, 문화 사이를 이동하며 살아가는 이방인들의 이야기를 수집한 웹 아카이브 프로젝트이다. 세계 여러 도시의 이방인들에게 각자의 삶을 보여줄 수 있는 10개의 데이터를 요청했다. 데이터는 현재 머무는 도시, 집, 자주 들고 다니는 물건, 고향을 떠올리게 하는 사물, 음식, 언어, 미래에 살고 싶은 장소 등에 관한 사진, 영상, 오디오, 텍스트로 구성된다. 이후 이방인이 직접 보내준 데이터를 함께 열어보며 이야기를 나눴다. 하나의 이미지, 짧은 영상, 사물의 기록은 대화의 출발점이 되었고, 그 안에서 고향, 이동, 언어, 소속감, 외로움, 익숙함과 낯섦에 관한 이야기가 자연스럽게 이어진다. 이 작업은 이방인의 삶을 하나의 정체성으로 고정하지 않는다. 대신 그들이 선택한 사적인 데이터들을 통해, 한 사람이 여러 장소와 언어 사이에서 어떻게 자신만의 집과 감각을 만들어가는지 들여다본다.',
     descriptionEn:
-      '10 Strangers 100 Stories is a web archive that collects the stories of people living between different places, languages, and cultures. I invited strangers living in cities around the world to share ten pieces of personal data that reflect their everyday lives. These included photographs, videos, audio recordings, and texts related to where they live now, their homes, the things they carry, objects that remind them of where they come from, food, language, and places they might want to live in the future. We then went through the material together and talked about the stories behind it. A single image, a short video, or an everyday object often became the starting point for conversations about home, migration, language, belonging, loneliness, familiarity, and estrangement. Rather than defining the experience of being a stranger through a single identity, the project looks closely at the personal traces each participant chose to share. Through them, it explores how people living across multiple places and languages gradually create their own sense of home and ways of relating to the world around them.',
+      '*10 Strangers 100 Stories* is a web archive that collects the stories of people living between different places, languages, and cultures. I invited strangers living in cities around the world to share ten pieces of personal data that reflect their everyday lives. These included photographs, videos, audio recordings, and texts related to where they live now, their homes, the things they carry, objects that remind them of where they come from, food, language, and places they might want to live in the future. We then went through the material together and talked about the stories behind it. A single image, a short video, or an everyday object often became the starting point for conversations about home, migration, language, belonging, loneliness, familiarity, and estrangement. Rather than defining the experience of being a stranger through a single identity, the project looks closely at the personal traces each participant chose to share. Through them, it explores how people living across multiple places and languages gradually create their own sense of home and ways of relating to the world around them.',
     contact: '@sihyunnkim',
     link: 'https://siihyunkim.github.io/10_Strangers/',
   },
@@ -253,7 +253,8 @@ const rawWorks: WorkInput[] = [
   {
     name: '강민서',
     title: 'How to Build a Norma',
-    slug: 'baekdanha',
+    // TODO: dummy placeholder images (slug: kangminseo) — swap in real thumbnail/detail images
+    slug: 'kangminseo',
     keyword: '100 Averages',
     descriptionKo:
       '《How to Build a Norma》는 평균이 객관적이고 합리적인 기준이라는 믿음에 질문을 던진다. 의류 사이즈, BMI, 얼굴 비율 등 사회의 많은 기준은 서로 다른 몸을 하나의 표준에 맞추도록 작동한다. 이 작업은 한 사람의 신체가 100개의 평균값에 따라 변화하는 과정을 통해, 평균이 인간을 설명하는 수치가 아니라 인간을 특정한 시스템에 맞추는 장치가 될 수 있음을 보여준다.\n‘노르마(Norma)’는 1940년대 미국의 인체 측정 연구에서 탄생한 평균적인 여성의 이름이다. 조각가 에이브럼 벨스키와 의학자 로버트 라투 디킨슨은 수천 명의 여성 신체 데이터를 평균 내어 ‘가장 평균적인 여성’의 조각상을 제작했다. 그러나 여러 평균값을 동시에 만족하는 실제 여성은 거의 존재하지 않았고, 이는 ‘평균적인 인간’이라는 개념의 모순을 드러냈다.\n 이 작업은 이러한 사례를 뒤집어 제작자 본인의 몸을 100개의 평균값에 맞춰 수정한다. 포스터는 모든 평균이 적용된 최종 ‘노르마’를 실물 크기로 제시하고, 영상은 그 변화 과정을 기록한다. 이를 통해 평균이 개인의 몸에 적용될 때 무엇이 수정되고 사라지는지를 탐구한다.',
@@ -270,7 +271,7 @@ const rawWorks: WorkInput[] = [
     descriptionKo:
       'BOOKISHNESS는 ‘책다움’ 혹은 ‘책처럼 느껴지는 성질’을 뜻하며, 스크린에서 가능한 읽기의 방식을 탐구하는 인터랙티브 웹 작업이다. 여기서 책다움은 단순히 종이책의 외형과 읽기 방식을 모방하는 것이 아니라, 책을 읽을 때 발생하는 감각과 행위가 스크린 환경 안에서 다시 구성되는 상태를 의미한다. 박스 안의 오브제들은 각각 다른 읽기 방식으로 연결되고, 감상자는 이를 선택하고 조작하며 텍스트에 도달하는 과정을 수행한다. 오브제와 지시문을 통해 관객의 참여를 유도했던 Fluxbox의 방식을 빌려, 웹이라는 매체를 통해 더 쉽게 연결되고 유포될 수 있는 형태로 확장된다.',
     descriptionEn:
-      'BOOKISHNESS is an interactive web-based work that explores possible ways of reading on screen. The title suggests the quality of feeling like a book, not by imitating the appearance or reading conventions of printed books, but by reconfiguring the sensations and actions involved in reading within the screen environment. The objects inside the box are each connected to a different mode of reading, and the user performs the process of reaching the text by selecting and manipulating them. Borrowing from the structure of Fluxbox, which encouraged audience participation through objects and instructions, this work extends that approach into a form that can be more easily connected and distributed through the medium of the web.',
+      '*BOOKISHNESS* is an interactive web-based work that explores possible ways of reading on screen. The title suggests the quality of feeling like a book, not by imitating the appearance or reading conventions of printed books, but by reconfiguring the sensations and actions involved in reading within the screen environment. The objects inside the box are each connected to a different mode of reading, and the user performs the process of reaching the text by selecting and manipulating them. Borrowing from the structure of Fluxbox, which encouraged audience participation through objects and instructions, this work extends that approach into a form that can be more easily connected and distributed through the medium of the web.',
     contact: '@kimseeunse',
     link: 'https://kimseeunse.github.io/BOOKISHNESS/',
   },
@@ -318,6 +319,47 @@ const rawWorks: WorkInput[] = [
       'Cinema does not present narratives in a linear sequence. It inverts the order of events, leaps across decades in an instant, and quietly excises certain spans of time. This project begins with the measurement and visualization of this rearranged temporal structure.',
     // NOTE: the source cell for this contact got cut off mid-paste ("@now_iz_") — confirm the full handle
     contact: '@now_iz_',
+  },
+  {
+    name: '최주혁',
+    title: 'STORAGE',
+    slug: 'choijuhyuk',
+    keyword: '100 Thoughts',
+    descriptionKo:
+      'STORAGE는 나의 가치관, 작업 철학, 디자인 신념을 확립하기 위해 만든 생각 정리 프로그램이다. 이 작업은 보편적인 메시지를 전달하거나 특정한 의미를 제안하기 위한 것이 아니다. 오히려 비정기적으로 떠오르는 생각들, 내가 꽂히는 대상, 옳다고 여기는 감각, 계속 관심을 두게 되는 주제들을 기록하고 쌓아두기 위한 개인적인 도구에 가깝다. 흩어진 생각들을 태그와 함께 저장하면 그것들은 화면 안에서 서로 연결되고, 시간이 지나 축적된 기록들은 하나의 맥락을 형성한다. STORAGE는 그 맥락을 통해 아직 내가 명확히 인지하지 못한 나의 모습과 철학을 발견해 나가기 위한 프로그램이다.',
+    descriptionEn:
+      '*STORAGE* is a program I created to organize my thoughts and establish my values, working philosophy, and beliefs about design. It is not intended to convey a universal message or propose any particular meaning. Rather, it functions as a personal tool for recording and accumulating thoughts that arise irregularly, things I find myself drawn to, sensibilities I believe to be right, and subjects that continue to hold my attention.\n\nWhen these scattered thoughts are stored with tags, they begin to connect with one another within the interface. Over time, the accumulated records gradually form a larger context. Through this context, *STORAGE* is a program for discovering aspects of myself, as well as the values and philosophy behind my work, that I may not yet be fully aware of.',
+    contact: '@onemoogy',
+  },
+  {
+    // TODO: dummy placeholder data — replace with 김주현's real title/keyword/description/contact
+    name: '김주현',
+    title: '제목 미정',
+    slug: 'kimjuhyeon',
+    keyword: '100 Books',
+    descriptionKo: '작품 설명이 아직 준비되지 않았습니다.',
+    descriptionEn: 'Description coming soon.',
+    contact: '',
+  },
+  {
+    // TODO: dummy placeholder data — replace with 황철호's real title/keyword/description/contact/images
+    name: '황철호',
+    title: '제목 미정',
+    slug: 'hwangchulho',
+    keyword: '100 Placeholders',
+    descriptionKo: '작품 설명이 아직 준비되지 않았습니다.',
+    descriptionEn: 'Description coming soon.',
+    contact: '',
+  },
+  {
+    // TODO: dummy placeholder data — replace with 김민지's real title/keyword/description/contact/images
+    name: '김민지',
+    title: '제목 미정',
+    slug: 'kimminji',
+    keyword: '100 Placeholders',
+    descriptionKo: '작품 설명이 아직 준비되지 않았습니다.',
+    descriptionEn: 'Description coming soon.',
+    contact: '',
   },
 ];
 
