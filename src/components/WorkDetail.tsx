@@ -159,7 +159,6 @@ const ImageWrapper = styled.div<{ $loaded: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: ${({ $loaded }) => ($loaded ? '0' : '240px')};
 `;
 
 const GalleryImage = styled.img<{ $loaded: boolean }>`
@@ -184,7 +183,6 @@ const Loader = styled.span`
   width: 4px;
   aspect-ratio: 1;
   border-radius: 50%;
-  z-index: 5000;
   box-shadow:
     19px 0 0 7px,
     38px 0 0 3px,
