@@ -7,11 +7,16 @@ import MainPage from './pages/MainPage';
 import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/Theme';
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      children: [{ path: '/', element: <MainPage /> }],
+    },
+  ],
   {
-    children: [{ path: '/', element: <MainPage /> }],
-  },
-]);
+    basename: '/2026/100',
+  }
+);
 
 const App = () => {
   return (
