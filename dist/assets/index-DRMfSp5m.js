@@ -777,4 +777,4 @@ input, textarea,button {
     font-size: 1.6rem;
     letter-spacing: -0.02em;
     line-height: 1.65;
-  `}},Rf=Mi([{children:[{path:`/`,element:(0,Z.jsx)(Mf,{})}]}]);(0,v.createRoot)(document.getElementById(`root`)).render((0,Z.jsx)(_.StrictMode,{children:(0,Z.jsx)(()=>(0,Z.jsxs)(Ps,{theme:Lf,children:[(0,Z.jsx)(Gi,{router:Rf}),(0,Z.jsx)(If,{})]}),{})}));
+  `}},Rf=`/2026/100/`.replace(/\/$/,``),zf=Mi([{path:`/`,element:(0,Z.jsx)(Mf,{})}],{basename:Rf});(0,v.createRoot)(document.getElementById(`root`)).render((0,Z.jsx)(_.StrictMode,{children:(0,Z.jsx)(()=>(0,Z.jsxs)(Ps,{theme:Lf,children:[(0,Z.jsx)(Gi,{router:zf}),(0,Z.jsx)(If,{})]}),{})}));

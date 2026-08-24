@@ -7,14 +7,17 @@ import MainPage from './pages/MainPage';
 import GlobalStyle from './styles/GlobalStyle';
 import theme from './styles/Theme';
 
+const basename = import.meta.env.BASE_URL === '/' ? '/' : import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const router = createBrowserRouter(
   [
     {
-      children: [{ path: '/', element: <MainPage /> }],
+      path: '/',
+      element: <MainPage />,
     },
   ],
   {
-    basename: '/2026/100',
+    basename,
   }
 );
 
