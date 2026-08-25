@@ -93,6 +93,11 @@ const ToggleButton = styled.button`
   &:hover {
     opacity: 0.7;
   }
+
+  @media (max-width: 720px) {
+    top: 1.5rem;
+    right: 1.5rem;
+  }
 `;
 
 const Overlay = styled.div<{ $open: boolean }>`
@@ -124,6 +129,7 @@ const Drawer = styled.aside<{ $open: boolean }>`
 
   @media (max-width: 720px) {
     width: 100%;
+    padding-top: 0rem;
   }
 `;
 
@@ -166,18 +172,28 @@ const ListKeyword = styled.div`
 const ListItem = styled.li`
   border-bottom: 1px solid;
   border-color: ${({ theme }) => theme.colors.black};
-  padding: 0.2rem 0 0 0;
+  padding: 0.2rem 0 0;
+
   button {
     display: flex;
-
     width: 100%;
-
     text-align: left;
 
     ${({ theme }) => theme.fonts.Text01};
 
     &:hover {
       color: ${({ theme }) => theme.colors.grey};
+    }
+  }
+
+  @media (max-width: 720px) {
+    padding: 0.4rem 0 0.1rem;
+    &:first-child {
+      margin-top: 1rem;
+    }
+
+    &:last-child {
+      border-bottom: none;
     }
   }
 `;
@@ -199,6 +215,11 @@ const SearchInput = styled.input`
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.grey};
+  }
+
+  /* iOS 사파리는 입력창 font-size가 16px 미만이면 포커스 시 화면을 확대한다 */
+  @media (max-width: 720px) {
+    font-size: 16px;
   }
 `;
 
