@@ -355,13 +355,14 @@ const rawWorks: WorkInput[] = [
     contact: '@s_fe_ho',
   },
   {
-    // TODO: dummy placeholder data — replace with 김민지's real title/keyword/description/contact/images
     name: '김민지',
-    title: '제목 미정',
+    title: '백백곳곳',
     slug: 'kimminji',
-    keyword: '100 Placeholders',
-    descriptionKo: '작품 설명이 아직 준비되지 않았습니다.',
-    descriptionEn: 'Description coming soon.',
+    keyword: '100 Places',
+    descriptionKo:
+      '《백백곳곳》은 어느 곳에도 완전히 속하지 못한다고 느껴온 경험으로 집이라는 공간에 대한 고찰을 담은 종이 조각 모음이다.\n집은 일반적으로 정주를 의미한다. 그러나 언제든 떠날 수 있는 상태에 익숙해진 나에게 집이란 명확하게 정의할 수 없는 대상이었다. 집이라는 가장 친밀하고도 사적인 장소, 일종의 헤테로토피아에 대한 실마리를 얻기 위해 잠시라도 머물렀던 100개의 장소를 모으고 사적인 경험과 감정을 축적하여 집이란 무엇인지 대답하는 과정을 기록했다.\n장소에 대한 기억을 떠올리고 다시 꺼내어 기록하는 과정은 이곳저곳을 헤매고 방황하는 움직임과 닮아 있다. 이와 같이 인쇄물의 글자가 무작위 방향으로 배열되어있어 읽는 행위가 장소를 찾아다니는 과정이 되도록 보여준다.\n카드를 넘겨 가며 나의 경험과 기억을 따라가는 경로를 통해 집이라는 대상을 어렴풋이 찾아가는 과정을 마치게 된다.',
+    descriptionEn:
+      '《백백곳곳》 is a collection of paper fragments that reflects on the idea of home through the experience of never feeling completely belonging to any one place.\nHome generally implies a sense of settlement and permanence. However, having become accustomed to a state of being ready to leave at any time, I found home difficult to define as a fixed or certain place. In an attempt to find clues to understanding home—the most intimate and private of spaces, and a kind of heterotopia—I collected 100 places where I had stayed, even if only briefly, and recorded the process of accumulating personal experiences and emotions in order to ask what home might mean.\nThe process of recalling memories of places, bringing them back into the present, and recording them resembles the act of wandering from one place to another. Reflecting this movement, the text on the printed materials is arranged in random directions, turning the act of reading into a journey of searching for a place.\nBy turning the cards and following the paths of my experiences and memories, the viewer completes a process of gradually, if only vaguely, approaching the idea of home.',
     contact: '',
   },
 ];
