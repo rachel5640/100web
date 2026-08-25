@@ -345,12 +345,14 @@ const rawWorks: WorkInput[] = [
   {
     // TODO: dummy placeholder data — replace with 황철호's real title/keyword/description/contact/images
     name: '황철호',
-    title: '제목 미정',
+    title: 'Refinement : Selection and Elimination',
     slug: 'hwangchulho',
-    keyword: '100 Placeholders',
-    descriptionKo: '작품 설명이 아직 준비되지 않았습니다.',
-    descriptionEn: 'Description coming soon.',
-    contact: '',
+    keyword: '100 Forms',
+    descriptionKo:
+      '​『Refinement : Selection and Elimination』은 디자인 아카이브 ‘입체(ipche)’를 바탕으로 형태와 취향, 그리고 삶의 태도 사이의 관계를 탐구한 기록이다. 가구, 오브제, 패션 등 다양한 분야의 형태를 수집하고 분석하는 과정에서, 나는 반복적으로 ‘정제된 형태’에 끌리고 있음을 발견했다. 장식을 덜어내고, 하나의 결정만으로 강한 인상을 만드는 형태들. 이 책은 그러한 취향이 어디에서 비롯되었는지 추적하는 과정에서 시작되었다. 연구를 통해 정제는 단순한 조형적 특징이 아니라 삶을 대하는 태도와도 연결되어 있음을 발견했다. 무엇을 남기고 무엇을 제거할 것인지를 선택하는 과정은 형태를 만드는 일뿐 아니라 자아를 형성하는 과정과도 닮아 있었다. 삶 속에 반복적으로 나타나는 ‘선택과 제거’의 구조를 살피고, 50개의 정제된 입체를 담고있다. 즉 아카이브이자, 정제를 통해 본질에 가까워지고자 하는 태도의 기록이다.',
+    descriptionEn:
+      '*Refinement: Selection and Elimination* is a record of an exploration into the relationship between form, taste, and one’s attitude toward life, based on the design archive ipche. Through collecting and analyzing forms from various fields—including furniture, objects, and fashion—I discovered that I was repeatedly drawn to “refined forms”: forms stripped of unnecessary decoration, capable of making a strong impression through a single decisive choice. This book began with an attempt to trace where this preference came from. Through my research, I came to understand that refinement is not merely a formal quality, but is also connected to an attitude toward life. The process of choosing what to retain and what to eliminate resembles not only the act of creating form, but also the process of shaping the self. By examining the recurring structure of “selection and elimination” in everyday life, this book presents 50 refined three-dimensional forms. In this sense, it is both an archive and a record of an attitude: a desire to move closer to the essence through the practice of refinement.',
+    contact: '@s_fe_ho',
   },
   {
     // TODO: dummy placeholder data — replace with 김민지's real title/keyword/description/contact/images
