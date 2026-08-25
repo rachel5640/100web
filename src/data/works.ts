@@ -261,7 +261,7 @@ const rawWorks: WorkInput[] = [
     descriptionEn:
       '*How to Build a Norma* questions the belief that averages provide objective and rational standards. Social standards such as clothing sizes, BMI, and facial proportions often work to fit different bodies into a single norm. By showing one body transformed according to 100 averages, the project reveals how averages can function not as descriptions of people, but as devices for fitting them into a particular system.\n“Norma” was the name given to an average woman created through anthropometric research in 1940s America. Sculptor Abram Belskie and physician Robert Latou Dickinson produced a statue of the “average woman” by combining the body measurements of thousands of women. Yet almost no real woman matched multiple averages at once, exposing the contradiction within the idea of an “average person.”\nReversing this historical case, the project modifies the creator’s own body according to 100 averages. Through these works, the project explores what is altered and what disappears when averages are applied to an individual body.',
     contact: '@minseo.kr',
-    link: '',
+    link: 'https://youtu.be/W45UFF0_KxE',
   },
   {
     name: '김세은',
