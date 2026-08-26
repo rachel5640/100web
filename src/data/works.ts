@@ -15,25 +15,19 @@ export interface Work {
 interface WorkInput {
   name: string;
   title: string;
-  // short "what are there 100 of" tag shown behind the card on hover —
-  // draft copy, meant to be edited
   keyword: string;
   descriptionKo: string;
   descriptionEn: string;
   contact?: string;
   link?: string;
-  // unified identifier — also the folder name under assets/img/detailimg/detail/<slug>/
   slug: string;
 }
 
-// src/assets/img/detailimg/thumbnail/<slug>.webp
 const thumbnailModules = import.meta.glob<string>('../assets/img/detailimg/thumbnail/*', {
   eager: true,
   import: 'default',
 });
 
-// src/assets/img/detailimg/detail/<slug>/*  — drop extra case-study images
-// straight into a work's folder and they'll show up automatically
 const detailModules = import.meta.glob<string>('../assets/img/detailimg/detail/*/*', {
   eager: true,
   import: 'default',
