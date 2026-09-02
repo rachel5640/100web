@@ -14,9 +14,9 @@ import Modal from './Modal';
 import WorkDetail from './WorkDetail';
 import WorkListPanel from './WorkListPanel';
 
-const CARD_HEIGHT_VH = 0.25;
+const CARD_HEIGHT_VH = 0.3;
 const CARD_ASPECT = 900 / 1200; // width : height, matches the source images
-const GUTTER_X_RATIO = 90 / 320;
+const GUTTER_X_RATIO = 100 / 320;
 const GUTTER_Y_RATIO = 100 / 320;
 const JITTER_RATIO = 70 / 320;
 const BUFFER = 2;
